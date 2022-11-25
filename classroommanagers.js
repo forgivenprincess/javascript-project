@@ -13,12 +13,11 @@ import {
     getStudentsNamesAndGradeAverage,
     addPointsToAll
 } from "./alumnifunctions.js";
-
+import readline from 'readline';
 import {
     students,
-    availableFemaleNames,
-    availableMaleNames,
-    availableGenders,
+    isInt,
+    showOptions
 } from "./handydata.js";
 
 const rl = readline.createInterface({
@@ -52,7 +51,7 @@ export async function displayOptions() {
     do {
         try {
             showOptions()
-            optionsAvailable = await getOptionFromConsole();
+            optionsAvailable = await optionsAvailable();
 
         } catch (error) {
             console.log(error)

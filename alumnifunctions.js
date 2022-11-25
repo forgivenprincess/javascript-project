@@ -168,19 +168,3 @@ export const addGradePoint = (grades) => {
     }
     return grades;
 };
-
-export {
-    getNames,
-    deleteLast,
-    deleteRandom,
-    getFemalesList,
-    checkAllStudentsAreFemale,
-    getYoungStudents,
-    addRandomStudent,
-    getYoungestStudent,
-    getAgeAverage,
-    addGrades,
-    getBestStudents,
-    getStudentsNamesAndGradeAverage,
-    addPointsToAll
-};
