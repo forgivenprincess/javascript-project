@@ -44,14 +44,11 @@ function optionsAvailable() {
 }
 
 export async function displayOptions() {
-    let optionsAvailable
-    let femalesList
-    let studentsScores
-    let studentAges
+    let choice
     do {
         try {
             showOptions()
-            optionsAvailable = await optionsAvailable();
+            choice = await optionsAvailable();
 
         } catch (error) {
             console.log(error)
@@ -176,5 +173,4 @@ switch (optionsAvailable) {
             addPointsToAll(students);
         break;
 }
-
 displayOptions()
