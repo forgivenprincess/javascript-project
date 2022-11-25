@@ -44,7 +44,7 @@ function optionsAvailable() {
 }
 
 export async function displayOptions() {
-    let choice
+    let choice;
     do {
         try {
             showOptions()
