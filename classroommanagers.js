@@ -1,3 +1,4 @@
+// Requisitos para imprimir
 import {
     getNames,
     deleteLast,
@@ -19,7 +20,9 @@ import {
     isInt,
     showOptions
 } from "./handydata.js";
-
+/*for (const key of Object.keys(toPrintRequirements)) {
+    console.log(key + " : " + toPrintRequirements[key])
+}*/
 const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout,
@@ -43,19 +46,12 @@ function optionsAvailable() {
     return promise;
 }
 
-export async function displayOptions() {
-    let choice
-    do {
+async function displayOptions() {
+let choice
+ do {
         try {
-            showOptions()
-            choice = await optionsAvailable();
-
-        } catch (error) {
-            console.log("\n\n Error unknown")
-            process.exit(0)
-        }
-
-
+           showOptions()
+        const choice = await optionsAvailable();
         switch (choice) {
             case 0:
                 // "exit",
@@ -72,27 +68,26 @@ export async function displayOptions() {
             case 3:
                 // "3. Show name of all alumni",
                 console.log('These are all our students:');
-                getNames.forEach(name => console.log(name));
+                getNames(students);
                 break;
             case 4:
                 //  "4. Delete last added student",
-                console.log("\n" + "The last student added has been deleted");
+                console.log('The last student added has been deleted');
                 deleteLast(students);
                 break;
             case 5:
                 //  "5. Delete random student",
-                console.log("\n" + "A random student has been deleted");
+                console.log('A random student has been deleted');
                 deleteRandom(students);
                 break;
             case 6:
                 // "6. Show all female alumni data",
-                console.log("\n" + "Female students data:");
-                console.log(getFemalesList(students));
+                console.log('Female students data:');
+                console.table(getFemalesList(students));
                 break;
             case 7:
                 //  "7. Show amount of female and male alumni",
-                console.log("\n" + " Amount of female students: " + getFemalesList(students).length + "\n" + "Amount of male students: " +
-                    (students.length - getFemalesList(students).length));
+                console.log('Amount of female students: ', getFemalesList(students).length, ' and Amount of male students: ',(students.length - getFemalesList(students).length));
                 break;
             case 8:
                 //  "8. Check if all students are female",
@@ -145,10 +140,13 @@ export async function displayOptions() {
                 // "18. Add an extra point to each rate for all alumni. Set rate as 10 if there's no existing rate",
                 addPointsToAll(students);
                 break;
+        } } catch (error) {
+            console.log(error);
+            process.exit(0);
         }
 
 
-    } while (choice > 0 && choice <= 18)
+  } while (choice > 0 && choice <= 18)
 
 }
 
