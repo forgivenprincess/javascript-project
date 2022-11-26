@@ -3,6 +3,8 @@ import {
     availableFemaleNames,
     availableMaleNames,
     availableGenders,
+    isInt,
+    showOptions
 } from "./handydata.js";
 
 /* 

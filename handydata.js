@@ -15,11 +15,12 @@ export const availableMaleNames = ['pepe', 'juan', 'victor', 'Leo', 'francisco',
 export const availableFemaleNames = ['cecilia', 'ana', 'luisa', 'silvia', 'isabel', 'virginia'];
 export const availableGenders = ['male', 'female'];
 
-export const showOptions = () => {
+//export function showOptions () {
+  export const showOptions = () => {
+
   console.log(optionsText)
 }
 export function isInt(num){
-  // returns a boolean
   return /^[0-9]+$/.test(num)
 }
 

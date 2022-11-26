@@ -13,13 +13,13 @@ import {
     getBestStudents,
     getStudentsNamesAndGradeAverage,
     addPointsToAll
-} from "./alumnifunctions.js";
+} from './alumnifunctions.js';
 import readline from 'readline';
 import {
     students,
     isInt,
     showOptions
-} from "./handydata.js";
+} from './handydata.js';
 /*for (const key of Object.keys(toPrintRequirements)) {
     console.log(key + " : " + toPrintRequirements[key])
 }*/
@@ -31,28 +31,35 @@ const rl = readline.createInterface({
 function optionsAvailable() {
     const promise = new Promise((resolve, reject) => {
         rl.question('Choose what do you want to do: ', (num) => {
-            rl.pause();
-            if (isInt(num)) {
-                num = Number.parseInt(num);
-                resolve(num);
+                rl.pause();
+                if (isInt(num)) {
+                    num = Number.parseInt(num);
+                    resolve(num);
 
-            } else {
-                reject('Please input a number');
-            }
-        })
+                } else {
+                    reject('Please input a number');
+                }
+            })
 
     })
 
     return promise;
 }
 
-async function displayOptions() {
-let choice
- do {
+export async function displayOptions() {
+    let choice;
+
+
+    do {
         try {
-           showOptions()
-        const choice = await optionsAvailable();
-        switch (choice) {
+            showOptions()
+            choice = await optionsAvailable();
+        } catch (error) {
+            console.log(error);
+            process.exit(0);
+        }
+// Adding the student table more frequently to make testing easier
+        switch(choice) {
             case 0:
                 // "exit",
                 console.log("\nThank you for using our Classroom Manager 2022. Good bye!");
@@ -74,11 +81,15 @@ let choice
                 //  "4. Delete last added student",
                 console.log('The last student added has been deleted');
                 deleteLast(students);
+                console.log('This is the current student table');
+                console.table(students);
                 break;
             case 5:
                 //  "5. Delete random student",
                 console.log('A random student has been deleted');
                 deleteRandom(students);
+                console.log('This is the current student table');
+                console.table(students);
                 break;
             case 6:
                 // "6. Show all female alumni data",
@@ -87,7 +98,7 @@ let choice
                 break;
             case 7:
                 //  "7. Show amount of female and male alumni",
-                console.log('Amount of female students: ', getFemalesList(students).length, ' and Amount of male students: ',(students.length - getFemalesList(students).length));
+                console.log('Amount of female students: ', getFemalesList(students).length, ' and Amount of male students: ', (students.length - getFemalesList(students).length));
                 break;
             case 8:
                 //  "8. Check if all students are female",
@@ -121,10 +132,14 @@ let choice
             case 14:
                 //  "14. Add new random grade to all students",
                 addGrades(students);
+                console.log('This is the current student table');
+                console.table(students);
                 break;
             case 15:
                 // "15. Sort alphabetically students by their name",
                 students.sort((itemA, itemB) => itemA.name.localeCompare(itemB.name));
+                console.log('This is the current student table');
+                console.table(students);
                 break;
             case 16:
                 //  "16. Show best student/s (all rates added)",
@@ -139,14 +154,12 @@ let choice
             case 18:
                 // "18. Add an extra point to each rate for all alumni. Set rate as 10 if there's no existing rate",
                 addPointsToAll(students);
+                console.log('This is the current student table');
+                console.table(students);
                 break;
-        } } catch (error) {
-            console.log(error);
-            process.exit(0);
         }
 
-
-  } while (choice > 0 && choice <= 18)
+    } while (choice > 0 && choice <= 18)
 
 }
 
