@@ -48,8 +48,6 @@ function optionsAvailable() {
 
 export async function displayOptions() {
     let choice;
-
-
     do {
         try {
             showOptions()
@@ -58,8 +56,8 @@ export async function displayOptions() {
             console.log(error);
             process.exit(0);
         }
-// Adding the student table more frequently to make testing easier
-        switch(choice) {
+        // Adding the student table more frequently to make testing easier
+        switch (choice) {
             case 0:
                 // "exit",
                 console.log("\nThank you for using our Classroom Manager 2022. Good bye!");
